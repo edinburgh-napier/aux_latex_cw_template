@@ -1,0 +1,14 @@
+del /s *.log
+del /s *.idx
+del /s *.toc
+del /s *.dvi
+del /s *.aux
+del /s *.bbl
+del /s *.blg
+del /s *.brf
+del /s *.out
+del /s *.gz
+del /s *.ilg
+del /s *.nlo
+del /s *.lof
+del /s *.lot
