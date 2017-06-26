@@ -1,10 +1,14 @@
-%FILL THESE IN
+% #######################################
+% ########### FILL THESE IN #############
+% #######################################
 \def\mytitle{Coursework Report}
 \def\mykeywords{Fill, These, In, So, google, can, find, your, report}
 \def\myauthor{Cool Student}
 \def\contact{4008000@napier.ac.uk}
 \def\mymodule{Module Title (SET00000)}
-%YOU DON'T NEED TO TOUCH ANYTHING BELOW
+% #######################################
+% #### YOU DON'T NEED TO TOUCH BELOW ####
+% #######################################
 \documentclass[10pt, a4paper]{article}
 \usepackage[a4paper,outer=1.5cm,inner=1.5cm,top=1.75cm,bottom=1.5cm]{geometry}
 \twocolumn
@@ -14,20 +18,27 @@
 \usepackage[colorlinks,linkcolor={black},citecolor={blue!80!black},urlcolor={blue!80!black}]{hyperref}
 %Stop indentation on new paragraphs
 \usepackage[parfill]{parskip}
-%% all this is for Arial
-\usepackage[english]{babel}
-\usepackage[T1]{fontenc}
-\usepackage{uarial}
-\renewcommand{\familydefault}{\sfdefault}
+%% Arial-like font
+\IfFileExists{uarial.sty}
+{
+    \usepackage[english]{babel}
+    \usepackage[T1]{fontenc}
+    \usepackage{uarial}
+    \renewcommand{\familydefault}{\sfdefault}
+}{
+    \GenericError{}{Couldn't find Arial font}{ you may need to install 'nonfree' fonts on your system}{}
+    \usepackage{lmodern}
+    \renewcommand*\familydefault{\sfdefault}
+}
 %Napier logo top right
 \usepackage{watermark}
-%Lorem Ipusm dolor please don't leave any in you final repot ;)
+%Lorem Ipusm dolor please don't leave any in you final report ;)
 \usepackage{lipsum}
 \usepackage{xcolor}
 \usepackage{listings}
 %give us the Capital H that we all know and love
 \usepackage{float}
-%tone down the linespacing after section titles
+%tone down the line spacing after section titles
 \usepackage{titlesec}
 %Cool maths printing
 \usepackage{amsmath}
@@ -67,17 +78,21 @@
 \date{}
 \hypersetup{pdfauthor=\myauthor,pdftitle=\mytitle,pdfkeywords=\mykeywords}
 \sloppy
+% #######################################
+% ########### START FROM HERE ###########
+% #######################################
 \begin{document}
-	\maketitle
-	\begin{abstract}
-		\lipsum[2]
-	\end{abstract}
+    \maketitle
+    \begin{abstract}
+        %Replace the lipsum command with actual text 
+        \lipsum[2]
+    \end{abstract}
     
-	\textbf{Keywords -- }{\mykeywords}
-    %START FROM HERE
-	\section{Introduction}
+    \textbf{Keywords -- }{\mykeywords}
+    
+    \section{Introduction}
     \paragraph{Referencing}
-    You should cite References like this: \cite{Keshav}. The references are saved in an external .bib file, and will automatically be added ot the bibliography at the end once cited.
+    You should cite References like this: \cite{Keshav}. The references are saved in an external .bib file, and will automatically be added to the bibliography at the end once cited.
     
     \figuremacro{h}{placeholder}{ImageTitle}{ - Some Descriptive Text}{1.0}
 	
