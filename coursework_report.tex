@@ -1,0 +1,791 @@
+% #######################################
+% ########### FILL THESE IN #############
+% #######################################
+\def\mytitle{Coursework Report}
+\def\mykeywords{Fill, These, In, So, google, can, find, your, report}
+\def\myauthor{Cool Student}
+\def\contact{40320494@live.napier.ac.uk}
+\def\mymodule{Module Title (SET09117)}
+% #######################################
+% #### YOU DON'T NEED TO TOUCH BELOW ####
+% #######################################
+\documentclass[10pt, a4paper]{article}
+\usepackage[a4paper,outer=1.5cm,inner=1.5cm,top=1.75cm,bottom=1.5cm]{geometry}
+\twocolumn
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+%colour our links, remove weird boxes
+\usepackage[colorlinks,linkcolor={black},citecolor={blue!80!black},urlcolor={blue!80!black}]{hyperref}
+%Stop indentation on new paragraphs
+\usepackage[parfill]{parskip}
+%% Arial-like font
+\IfFileExists{uarial.sty}
+{
+    \usepackage[english]{babel}
+    \usepackage[T1]{fontenc}
+    \usepackage{uarial}
+    \renewcommand{\familydefault}{\sfdefault}
+}{
+    \GenericError{}{Couldn't find Arial font}{ you may need to install 'nonfree' fonts on your system}{}
+    \usepackage{lmodern}
+    \renewcommand*\familydefault{\sfdefault}
+}
+%Napier logo top right
+\usepackage{watermark}
+%Lorem Ipusm dolor please don't leave any in you final report ;)
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{listings}
+%give us the Capital H that we all know and love
+\usepackage{float}
+%tone down the line spacing after section titles
+\usepackage{titlesec}
+%Cool maths printing
+\usepackage{amsmath}
+%PseudoCode
+
+\usepackage{algorithm2e}
+
+\titlespacing{\subsection}{0pt}{\parskip}{-3pt}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+\titlespacing{\paragraph}{0pt}{\parskip}{\parskip}
+\newcommand{\figuremacro}[5]{
+    \begin{figure}[#1]
+        \centering
+        \includegraphics[width=#5\columnwidth]{#2}
+        \caption[#3]{\textbf{#3}#4}
+        \label{fig:#2}
+    \end{figure}
+}
+
+\lstset{
+	escapeinside={/*@}{@*/}, language=C++,
+	basicstyle=\fontsize{8.5}{12}\selectfont,
+	numbers=left,numbersep=2pt,xleftmargin=2pt,frame=tb,
+    columns=fullflexible,showstringspaces=false,tabsize=4,
+    keepspaces=true,showtabs=false,showspaces=false,
+    backgroundcolor=\color{white}, morekeywords={inline,public,
+    class,private,protected,struct},captionpos=t,lineskip=-0.4em,
+	aboveskip=10pt, extendedchars=true, breaklines=true,
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	keywordstyle=\color[rgb]{0,0,1},
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\color[rgb]{0.627,0.126,0.941}
+}
+
+\thiswatermark{\centering \put(336.5,-38.0){\includegraphics[scale=0.8]{logo}} }
+\title{\mytitle}
+\author{\myauthor\hspace{1em}\\\contact\\Edinburgh Napier University\hspace{0.5em}-\hspace{0.5em}\mymodule}
+\date{}
+\hypersetup{pdfauthor=\myauthor,pdftitle=\mytitle,pdfkeywords=\mykeywords}
+\sloppy
+% #######################################
+% ########### START FROM HERE ###########
+% #######################################
+\begin{document}
+    \underline{CHECKERS GAME SOFTWARE DEVELOPMENT REPORT}
+    \begin{abstract}
+        %Replace the lipsum command with actual text	
+        \lipsum[2]
+    \end{abstract}
+    
+    \textbf{Keywords -- }{\mykeywords}
+    
+    \underline section{Introduction}
+    This report is about the development of a text based checkers game using java. The game is running from a command line using a textual interface before switching to a graphical user interface. It consists of a game board, two players, positions. Each player has twelve pieces that they can move diagonally and if one player manages to eliminate all the pieces of the other player, he is declared the winner. The game should able to record play history and support undo and redo. While the game can be played between two computers, a player and a computer or two players, our choice has been to make it a game that can be played between two players while the computer determines whose turn it is to play of the two players.     
+    \paragraph{Referencing}
+    You should cite References like this: \cite{Keshav}. The references are saved in an external .bib file, and will automatically be added to the bibliography at the end once cited.
+    
+    \figuremacro{h}{placeholder}{ImageTitle}{ - Some Descriptive Text}{1.0}
+	
+	\section{Formatting}
+	Some common formatting you may need uses these commands for \textbf{Bold Text}, \textit{Italics}, and \underline{underlined}.
+	\subsection{LineBreaks}
+	Here is a line
+    
+    Here is a line followed by a double line break.
+	This line is only one line break down from the above, Notice that latex can ignore this
+    
+    We can force a break \\ with the break operator.
+
+\\
+\underline{Test Data}
+Compile( java code for compiling)
+Run( code to run)
+Move piece right in the opponent’s side
+Move piece left in the opponent’s side
+Move piece backward 
+Move piece forward directly opposite
+Click on Quit Game button
+Click new Game button
+\\
+Expected Result respectively:
+\\
+Compile successful 
+Run successfully (launches the Game)
+Move right successfully 
+Move left successfully 
+Fail (error message)
+Fail ( error message)
+Quit Game successfully 
+Starts New Game 
+\\
+Actual Results: Same as Expected Results
+\\
+\underline{Enhancements} 
+With more time, the game could have been made to record play history, which is the sequence of moves that the players make during a game, to enable each game that is played to be recorded and replayed. It could have also been implemented to support undo and redo move. 
+ 
+}
+\end{lstlisting}
+    
+\subsection{PseudoCode}
+
+\begin{algorithm}[h]
+\For{$i = 0$ \KwTo $100$}{
+\underline{Design} 
+The game features a checkers board which consists of 8 by 8 x and y coordinates, with two distinct grey shades, 12 red pieces for one player and 12 black pieces for the other player, a button to start a new game, a button to quit the game and textbox displaying the computer’s prompts.
+\\
+If the game is launched, the computer randomly decides which of the two players makes the first move.
+If a piece is clicked on, then it can be moved to the left or to the right. Else, it can jump.
+If a piece reaches the final line of the opposite side, then it can become a king and be able to move both forward and backward. Else, it can only move forward.\\
+If one player makes a move, then it is the other player’s turn to make a move. Else, exit the game.
+If a player jumps over all of the other player’s pieces, then they are declared the winner. Else, continue playing.
+If a player is declared the winner, then a new game can be started. Else, exit the game. 
+\\
+Additional Algorithms are as follows:
+1. Create a game board 
+2. Add Buttons 
+3. Add Information label
+4. Add checkers
+5. Add players
+6. Add Moves method
+7. Add jump method
+8. Add Start Game
+9. Add Quit Game
+10. Add Game is over
+11.Add new Game method
+\\
+To implement the above Algorithm, a Main Class was created which has nested classes in it.
+At different classes the aforementioned Algorithm was implemented. To conviniently implement the above Algorithm in some classes, an ArrayList data structure was used. For instance, an ArrayList was used to hold Game Checkers’ Moves which stores the Moves.
+}
+\caption{FizzBuzz}
+\end{algorithm}
+	
+\section{Conclusion}	
+\\
+\underline{Critical Evaluation} 
+The features that have been well implemented and work well are the game board display, which features distinct colours to make easy for players to see each other’s positions; the decisions that players have to make in terms of moves, as there is a choice of moving a piece in any direction, either to the left or to the right; the computer’s prompts in terms of what the next course of action should be during the game; as this organises the game well and gives it a structure; the computer’s decision as to who the winner is, as this is a core feature for bringing a match to close; and the functionality of starting a new game without the need to relaunch the application instead of wasting time by going through the launching process again and again.
+\\
+\underline{Personal Evaluation} 
+Throughout the development of this software, we learned that an application cannot just be either a GUI application or a CLI application, that it can start off from a command line and extend to a graphical user interface.
+The challenge we faced was mostly in relation to the timeframe at our disposal for us to be able to implement all of the required features, i.e. recording play history, supporting undo and redo and converting our final working model into an executable file.
+However, we feel that we performed reasonably well considering that we didn’t have much prior experience in game development.
+
+\bibliographystyle{ieeetr}
+\\
+\underline{APPENDIX}
+\\
+\underline{INTERFACE}
+\\
+    \figuremacro{h}{placeholder}{ImageTitle}{ Interface}{1.0}
+
+ 
+\underline{CODES AND COMMENTS}
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.ArrayList;
+
+public class GameCheckers extends JPanel {
+   /*
+   *The static Main class enables the program to be launched
+   */
+   public static void main(String[] args) {
+	   /* Creating an insatnce of Jframe class
+	   *Passing a parameter GameCheckers to it.
+	   */
+      JFrame window = new JFrame("GameCheckers");
+	  //Creating an instance of a GameCheckers
+      GameCheckers game = new GameCheckers();
+      window.setContentPane(game);
+      window.pack();
+	  //Setting the size of the screen
+      Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+      window.setLocation( (screensize.width - window.getWidth())/2,
+            (screensize.height - window.getHeight())/2 );
+      window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+      window.setResizable(false);
+      window.setVisible(true);
+   }
+
+   /**
+    * a Sstatic class for running Applet
+    */
+   public static class Applet extends JApplet {
+      public void init() {
+         setContentPane( new GameCheckers() );
+      }
+   }
+
+   //creating buttons for starting a new game and quiting game.
+   private JButton btnNewGame;
+   private JButton btnQiut;
+
+   //creating a label to display lblMessage to user.
+   private JLabel lblMessage;
+
+   /**
+    * Creating a constructor GameCheckers.
+	*That sets the dimension of the frame
+	*it sets the backgroud colour
+	*It sets and manages the buttons
+    */
+   public GameCheckers() {
+      setLayout(null);
+      setPreferredSize( new Dimension(350,250) );
+
+      setBackground(new Color(0,200,0));
+      // Creating an instance of a GameBoard class
+      GameBoard gameBoard = new GameBoard();
+	  //adding buttons to the GameBoard
+      add(gameBoard);
+      add(btnNewGame);
+      add(btnQiut);
+      add(lblMessage);
+
+      /* Using the setBounds method to set the position and sizes of the controls(buttons and the GameBoards) */
+
+      gameBoard.setBounds(20,20,164,164);
+      btnNewGame.setBounds(210, 60, 120, 30);
+      btnQiut.setBounds(210, 120, 120, 30);
+      lblMessage.setBounds(0, 200, 350, 30);
+
+   }
+// end constructor
+
+/**
+	*Using a static class to hold the row and columns to be moved and to the rows and columns to move to.
+	*/
+   private static class GameCheckersMove {
+      int rowBegin, columnBegin;
+      int rowTo, colTo;
+      GameCheckersMove(int row1, int col1, int row2, int col2) {
+         rowBegin = row1;
+         columnBegin = col1;
+         rowTo = row2;
+         colTo = col2;
+      }
+	  /**
+	  *checking if the move is a jump or not
+	  *declaring a variable isJump to be boolean
+	  *if the move is true, then the checker moves two rows
+	  else one move
+	  */
+      boolean isJump() {
+         return (rowBegin - rowTo == 2 || rowBegin - rowTo == -2);
+      }
+   }  // end class GameCheckersMove.
+
+   /**
+    * GameBoard class
+	*Extends to Jpanel class
+    */
+   private class GameBoard extends JPanel implements ActionListener, MouseListener {
+      GameCheckersData GameBoard;
+	  //delcaring variable  isGameLive as boolean to represent game that is in progress
+      boolean isGameLive;
+
+     //Variable activePlayer to represent current player
+      int activePlayer;
+
+	  //declaring variables as int to rrepresent selected row and column
+      int selectedRow, selectedCol;
+
+	  //Using an array to hold legal moves
+      GameCheckersMove[] legalMoves;
+      /**
+	  * A GameBoard constructor  that sets the backgroud colors and listen for mouse clicks
+	  *It also starts new game
+       */
+      GameBoard() {
+         setBackground(Color.BLACK);
+         addMouseListener(this);
+         btnQiut = new JButton("Quit");
+         btnQiut.addActionListener(this);
+         btnNewGame = new JButton("Start New Game");
+         btnNewGame.addActionListener(this);
+         lblMessage = new JLabel("",JLabel.CENTER);
+         lblMessage.setFont(new  Font("Serif", Font.BOLD, 14));
+         lblMessage.setForeground(Color.RED);
+         GameBoard = new GameCheckersData();
+         doNewGame();
+      }
+      /**
+	  *A public class that perform actions based on the click event.
+       *
+       */
+      public void actionPerformed(ActionEvent evt) {
+         Object src = evt.getSource();
+         if (src == btnNewGame)
+            doNewGame();
+         else if (src == btnQiut)
+            doQuit();
+      }
+
+      /**
+       * Setup a new game if game is not  live
+       */
+      void doNewGame() {
+         if (isGameLive == true) {
+            lblMessage.setText("Finish the current game first!");
+            return;
+         }
+         GameBoard.setUpGame();
+         activePlayer = GameCheckersData.RED;
+         legalMoves = GameBoard.getLegalMoves(GameCheckersData.RED);
+         selectedRow = -1;
+         lblMessage.setText("Red:  Make your move.");
+         isGameLive = true;
+         btnNewGame.setEnabled(false);
+         btnQiut.setEnabled(true);
+         repaint();
+      }
+
+      /**
+       *A method that enables any of the players to quit game
+       */
+      void doQuit() {
+         if (isGameLive == false) {
+            lblMessage.setText("There is no game in progress!");
+            return;
+         }
+         if (activePlayer == GameCheckersData.RED)
+            gameOver("RED Quits.  BLACK wins.");
+         else
+            gameOver("BLACK Quits.  RED wins.");
+      }
+
+      /**
+       *A method gameOver that resets the game
+       */
+      void gameOver(String str) {
+         lblMessage.setText(str);
+         btnNewGame.setEnabled(true);
+         btnQiut.setEnabled(false);
+         isGameLive = false;
+      }
+
+      /**
+       * A void method that indicates a selected row and column
+	   It reset the label message
+	   It allows a piece to be selected before any move.
+       */
+      void doSquareClick(int row, int col) {
+         for (int i = 0; i < legalMoves.length; i++)
+            if (legalMoves[i].rowBegin == row && legalMoves[i].columnBegin == col) {
+               selectedRow = row;
+               selectedCol = col;
+               if (activePlayer == GameCheckersData.RED)
+                  lblMessage.setText("RED:  Make your move.");
+               else
+                  lblMessage.setText("BLACK:  Make your move.");
+               repaint();
+               return;
+            }
+
+
+
+         if (selectedRow < 0) {
+            lblMessage.setText("Click the piece you want to move.");
+            return;
+         }
+
+         /* it allows a piece to move when a square and piece to be move are selected */
+
+         for (int i = 0; i < legalMoves.length; i++)
+            if (legalMoves[i].rowBegin == selectedRow && legalMoves[i].columnBegin == selectedCol
+                  && legalMoves[i].rowTo == row && legalMoves[i].colTo == col) {
+               doTakeAMove(legalMoves[i]);
+               return;
+            }
+
+         lblMessage.setText("Click the square you want to move to.");
+      }  // end doSquareClick()
+
+      /**
+       * doTakeAMove method that enables legal moves
+       */
+      void doTakeAMove(GameCheckersMove move) {
+         GameBoard.makeMove(move);
+
+         /**
+		  *CHECKS FOR IF THERE IS ANY LEGAL JUMP
+          */
+
+         if (move.isJump()) {
+            legalMoves = GameBoard.getLegalJumpsFrom(activePlayer,move.rowTo,move.colTo);
+            if (legalMoves != null) {
+               if (activePlayer == GameCheckersData.RED)
+                  lblMessage.setText("RED:  You still need to move");
+               else
+                  lblMessage.setText("BLACK:  You still need to move.");
+               selectedRow = move.rowTo;
+               selectedCol = move.colTo;
+               repaint();
+               return;
+            }
+         }
+
+         //declaring a win if no moves for any of the players.
+         if (activePlayer == GameCheckersData.RED) {
+            activePlayer = GameCheckersData.BLACK;
+            legalMoves = GameBoard.getLegalMoves(activePlayer);
+            if (legalMoves == null)
+               gameOver("BLACK has no moves.  RED wins.");
+            else if (legalMoves[0].isJump())
+               lblMessage.setText("BLACK:  Make your move.  You must jump.");
+            else
+               lblMessage.setText("BLACK:  Make your move.");
+         }
+		 //This allows a player to take turn to play
+         else {
+            activePlayer = GameCheckersData.RED;
+            legalMoves = GameBoard.getLegalMoves(activePlayer);
+            if (legalMoves == null)
+               gameOver("RED has no moves.  BLACK wins.");
+            else if (legalMoves[0].isJump())
+               lblMessage.setText("RED:  Make your move.  You must jump.");
+            else
+               lblMessage.setText("RED:  Make your move.");
+         }
+
+         selectedRow = -1;
+
+         if (legalMoves != null) {
+            boolean sameStartSquare = true;
+            for (int i = 1; i < legalMoves.length; i++)
+               if (legalMoves[i].rowBegin != legalMoves[0].rowBegin
+                     || legalMoves[i].columnBegin != legalMoves[0].columnBegin) {
+                  sameStartSquare = false;
+                  break;
+               }
+            if (sameStartSquare) {
+               selectedRow = legalMoves[0].rowBegin;
+               selectedCol = legalMoves[0].columnBegin;
+            }
+         }
+         repaint();
+      }  // end doTakeAMove();
+
+      /**
+	  *A public void method that allows checkers to be highlighted if a player has a legal move
+       * It draws a black line round the border of the edges of board
+	   It also draws a square round the checkerGameBoard and the GameCheckers
+       */
+      public void paintComponent(Graphics g) {
+         g.setColor(Color.black);
+         g.drawRect(0,0,getSize().width-1,getSize().height-1);
+         g.drawRect(1,1,getSize().width-3,getSize().height-3);
+
+         for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+               if ( row % 2 == col % 2 )
+                  g.setColor(Color.LIGHT_GRAY);
+               else
+                  g.setColor(Color.GRAY);
+               g.fillRect(2 + col*20, 2 + row*20, 20, 20);
+               switch (GameBoard.pieceAt(row,col)) {
+               case GameCheckersData.RED:
+                  g.setColor(Color.RED);
+                  g.fillOval(4 + col*20, 4 + row*20, 15, 15);
+                  break;
+               case GameCheckersData.BLACK:
+                  g.setColor(Color.BLACK);
+                  g.fillOval(4 + col*20, 4 + row*20, 15, 15);
+                  break;
+               case GameCheckersData.RED_KING:
+                  g.setColor(Color.RED);
+                  g.fillOval(4 + col*20, 4 + row*20, 15, 15);
+                  g.setColor(Color.WHITE);
+                  g.drawString("K", 7 + col*20, 16 + row*20);
+                  break;
+               case GameCheckersData.BLACK_KING:
+                  g.setColor(Color.BLACK);
+                  g.fillOval(4 + col*20, 4 + row*20, 15, 15);
+                  g.setColor(Color.WHITE);
+                  g.drawString("K", 7 + col*20, 16 + row*20);
+                  break;
+               }
+            }
+         }
+
+         if (isGameLive) {
+            g.setColor(Color.cyan);
+            for (int i = 0; i < legalMoves.length; i++) {
+               g.drawRect(2 + legalMoves[i].columnBegin*20, 2 + legalMoves[i].rowBegin*20, 19, 19);
+               g.drawRect(3 + legalMoves[i].columnBegin*20, 3 + legalMoves[i].rowBegin*20, 17, 17);
+            }
+            if (selectedRow >= 0) {
+               g.setColor(Color.white);
+               g.drawRect(2 + selectedCol*20, 2 + selectedRow*20, 19, 19);
+               g.drawRect(3 + selectedCol*20, 3 + selectedRow*20, 17, 17);
+               g.setColor(Color.green);
+               for (int i = 0; i < legalMoves.length; i++) {
+                  if (legalMoves[i].columnBegin == selectedCol && legalMoves[i].rowBegin == selectedRow) {
+                     g.drawRect(2 + legalMoves[i].colTo*20, 2 + legalMoves[i].rowTo*20, 19, 19);
+                     g.drawRect(3 + legalMoves[i].colTo*20, 3 + legalMoves[i].rowTo*20, 17, 17);
+                  }
+               }
+            }
+         }
+
+      }  // end paintComponent()
+
+      /**
+	  *A public void method that controls the mouse click event.
+	  *Displays message if no game is in progress
+	  *Else calls doSquareClick method.
+       */
+      public void mousePressed(MouseEvent evt) {
+         if (isGameLive == false)
+            lblMessage.setText("Click \"New Game\" to start a new game.");
+         else {
+            int col = (evt.getX() - 2) / 20;
+            int row = (evt.getY() - 2) / 20;
+            if (col >= 0 && col < 8 && row >= 0 && row < 8)
+               doSquareClick(row,col);
+         }
+      }
+
+
+      public void mouseReleased(MouseEvent evt) { }
+      public void mouseClicked(MouseEvent evt) { }
+      public void mouseEntered(MouseEvent evt) { }
+      public void mouseExited(MouseEvent evt) { }
+
+   }  // end class GameBoard
+
+   /**
+   A static class that holds the data of the GameCheckers
+   *It holds and shows the directions of the moves
+   *It also holds the list of available legal moves
+    */
+   private static class GameCheckersData {
+      /*  These represent possible contents of the squares */
+      static final int
+                EMPTY = 0,
+                RED = 1,
+                RED_KING = 2,
+                BLACK = 3,
+                BLACK_KING = 4;
+
+      //creating an array of GameBoard
+      int[][] GameBoard;
+      /**
+       * A GameBoardData Constructor that sets a new game.
+       */
+      GameCheckersData() {
+         GameBoard = new int[8][8];
+         setUpGame();
+      }
+      /**
+	   *A void method that set the conditions for the GameCheckers positions in the square
+       */
+      void setUpGame() {
+         for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+               if ( row % 2 == col % 2 ) {
+                  if (row < 3)
+                     GameBoard[row][col] = BLACK;
+                  else if (row > 4)
+                     GameBoard[row][col] = RED;
+                  else
+                     GameBoard[row][col] = EMPTY;
+               }
+               else {
+                  GameBoard[row][col] = EMPTY;
+               }
+            }
+         }
+      }  // end setUpGame()
+      /**
+       * This returns the contents of the square.
+       */
+      int pieceAt(int row, int col) {
+         return GameBoard[row][col];
+      }
+
+      /**
+       *
+       */
+      void setPieceAt(int row, int col, int piece) {
+         GameBoard[row][col] = piece;
+      }
+      /**
+	  *This method allows moves specified.
+       *
+       */
+      void makeMove(GameCheckersMove move) {
+         makeMove(move.rowBegin, move.columnBegin, move.rowTo, move.colTo);
+      }
+      /**
+	  *This method also allows legal moves from the current position to the next square.
+	  *It allows a piece that is jumped to be removed from the game board.
+	  *And change the piece that gets to the last row of the opponent's side to a King
+       */
+      void makeMove(int rowBegin, int columnBegin, int rowTo, int colTo) {
+         GameBoard[rowTo][colTo] = GameBoard[rowBegin][columnBegin];
+         GameBoard[rowBegin][columnBegin] = EMPTY;
+         if (rowBegin - rowTo == 2 || rowBegin - rowTo == -2) {
+            // The move is a jump.  Remove the jumped piece from the GameBoard.
+            int jumpRow = (rowBegin + rowTo) / 2;  // Row of the jumped piece.
+            int jumpCol = (columnBegin + colTo) / 2;  // Column of the jumped piece.
+            GameBoard[jumpRow][jumpCol] = EMPTY;
+         }
+         if (rowTo == 0 && GameBoard[rowTo][colTo] == RED)
+            GameBoard[rowTo][colTo] = RED_KING;
+         if (rowTo == 7 && GameBoard[rowTo][colTo] == BLACK)
+            GameBoard[rowTo][colTo] = BLACK_KING;
+      }
+      /**
+	  *
+       * Return an array containing all the legal GameCheckersMoves
+	   Also checks if there is a possible jump in the opposite direction
+	   And then add it to the moves Array list
+       *
+       *
+       */
+      GameCheckersMove[] getLegalMoves(int player) {
+         if (player != RED && player != BLACK)
+            return null;
+         int playerKing;
+         if (player == RED)
+            playerKing = RED_KING;
+         else
+            playerKing = BLACK_KING;
+         ArrayList<GameCheckersMove> moves = new ArrayList<GameCheckersMove>();  // Moves will be stored in this list.
+
+         for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+               if (GameBoard[row][col] == player || GameBoard[row][col] == playerKing) {
+                  if (isJump(player, row, col, row+1, col+1, row+2, col+2))
+                     moves.add(new GameCheckersMove(row, col, row+2, col+2));
+                  if (isJump(player, row, col, row-1, col+1, row-2, col+2))
+                     moves.add(new GameCheckersMove(row, col, row-2, col+2));
+                  if (isJump(player, row, col, row+1, col-1, row+2, col-2))
+                     moves.add(new GameCheckersMove(row, col, row+2, col-2));
+                  if (isJump(player, row, col, row-1, col-1, row-2, col-2))
+                     moves.add(new GameCheckersMove(row, col, row-2, col-2));
+               }
+            }
+         }
+         if (moves.size() == 0) {
+            for (int row = 0; row < 8; row++) {
+               for (int col = 0; col < 8; col++) {
+                  if (GameBoard[row][col] == player || GameBoard[row][col] == playerKing) {
+                     if (isMove(player,row,col,row+1,col+1))
+                        moves.add(new GameCheckersMove(row,col,row+1,col+1));
+                     if (isMove(player,row,col,row-1,col+1))
+                        moves.add(new GameCheckersMove(row,col,row-1,col+1));
+                     if (isMove(player,row,col,row+1,col-1))
+                        moves.add(new GameCheckersMove(row,col,row+1,col-1));
+                     if (isMove(player,row,col,row-1,col-1))
+                        moves.add(new GameCheckersMove(row,col,row-1,col-1));
+                  }
+               }
+            }
+         }
+         if (moves.size() == 0)
+            return null;
+         else {
+            GameCheckersMove[] arrayMove = new GameCheckersMove[moves.size()];
+            for (int i = 0; i < moves.size(); i++)
+               arrayMove[i] = moves.get(i);
+            return arrayMove;
+         }
+      }  // end getLegalMoves
+
+      /**
+	  * This reture a list of legal jumps
+       */
+      GameCheckersMove[] getLegalJumpsFrom(int player, int row, int col) {
+         if (player != RED && player != BLACK)
+            return null;
+         int playerKing;
+         if (player == RED)
+            playerKing = RED_KING;
+         else
+            playerKing = BLACK_KING;
+         ArrayList<GameCheckersMove> moves = new ArrayList<GameCheckersMove>();  // The legal jumps will be stored in this list.
+         if (GameBoard[row][col] == player || GameBoard[row][col] == playerKing) {
+            if (isJump(player, row, col, row+1, col+1, row+2, col+2))
+               moves.add(new GameCheckersMove(row, col, row+2, col+2));
+            if (isJump(player, row, col, row-1, col+1, row-2, col+2))
+               moves.add(new GameCheckersMove(row, col, row-2, col+2));
+            if (isJump(player, row, col, row+1, col-1, row+2, col-2))
+               moves.add(new GameCheckersMove(row, col, row+2, col-2));
+            if (isJump(player, row, col, row-1, col-1, row-2, col-2))
+               moves.add(new GameCheckersMove(row, col, row-2, col-2));
+         }
+         if (moves.size() == 0)
+            return null;
+         else {
+            GameCheckersMove[] arrayMove = new GameCheckersMove[moves.size()];
+            for (int i = 0; i < moves.size(); i++)
+               arrayMove[i] = moves.get(i);
+            return arrayMove;
+         }
+      }  // end getLegalMovesFrom()
+      /**
+       * This method shows if a player can jump or not.
+	   *It returns true if there is jump otheerwise returns false.
+       */
+      private boolean isJump(int player, int row1, int col1, int row2, int col2, int r3, int c3) {
+
+         if (r3 < 0 || r3 >= 8 || c3 < 0 || c3 >= 8)
+            return false;
+
+         if (GameBoard[r3][c3] != EMPTY)
+            return false;
+         if (player == RED) {
+            if (GameBoard[row1][col1] == RED && r3 > row1)
+               return false;
+            if (GameBoard[row2][col2] != BLACK && GameBoard[row2][col2] != BLACK_KING)
+               return false;
+            return true;
+         }
+         else {
+            if (GameBoard[row1][col1] == BLACK && r3 < row1)
+               return false;
+            if (GameBoard[row2][col2] != RED && GameBoard[row2][col2] != RED_KING)
+               return false;
+            return true;
+         }
+      }  // end isJump()
+      /**
+       * This is called by the getLegalMoves() method to This method tells whether
+       * the player can legally move from (row1,col1) to (row2,col2).
+		* And this method is called by getLegalMoves
+       */
+      private boolean isMove(int player, int row1, int col1, int row2, int col2) {
+
+         if (row2 < 0 || row2 >= 8 || col2 < 0 || col2 >= 8)
+            return false;
+
+         if (GameBoard[row2][col2] != EMPTY)
+            return false;
+         if (player == RED) {
+            if (GameBoard[row1][col1] == RED && row2 > row1)
+               return false;
+            return true;
+			}
+         else {
+            if (GameBoard[row1][col1] == BLACK && row2 < row1)
+               return false;
+		   return true;
+         }
+      }  // end isMove()
+   } // end class GameCheckersData  
+} // end class GameCheckers
+		
+\end{document}
